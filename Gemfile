@@ -56,3 +56,5 @@ gem 'devise'
 gem 'rails-assets-bootstrap-sass-official'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
+
+gem 'geocoder'

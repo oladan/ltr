@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable
 
   has_many :meals, dependent: :destroy, inverse_of: :user
+  has_many :points, dependent: :destroy, inverse_of: :user
 
   validates :daily_calories, presence: true
 

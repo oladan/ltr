@@ -1,4 +1,4 @@
-angular.module('caloriesApp').controller 'MealCtrl', ['$scope', '$http', 'alerts', '$filter', '$location', '$routeParams', ($scope, $http, alerts, $filter, $location, $routeParams) ->
+angular.module('ltrApp').controller 'MealCtrl', ['$scope', '$http', 'alerts', '$filter', '$location', '$routeParams', ($scope, $http, alerts, $filter, $location, $routeParams) ->
   if $routeParams.mealId
     $scope.meal = {id: $routeParams.mealId}
 

@@ -1,4 +1,4 @@
-angular.module('caloriesApp').controller 'MealsCtrl', ['$scope', '$http', 'alerts', '$window', ($scope, $http, alerts, $window) ->
+angular.module('ltrApp').controller 'MealsCtrl', ['$scope', '$http', 'alerts', '$window', ($scope, $http, alerts, $window) ->
   $scope.meals = []
   $scope.caloriesDaily = []
   $scope.mealFilter =

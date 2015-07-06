@@ -3,9 +3,10 @@
 #= depend_on_asset 'sign_up.html'
 #= depend_on_asset 'dashboard.html'
 #= depend_on_asset 'meal.html'
+#= depend_on_asset 'point.html'
 #= depend_on_asset 'settings.html'
 
-app = angular.module 'caloriesApp', ['ngRoute', 'ui.bootstrap']
+app = angular.module 'ltrApp', ['ngRoute', 'ui.bootstrap']
 
 app.factory 'alerts', ['$rootScope', ($rootScope) ->
   $rootScope.alerts = []
@@ -34,6 +35,8 @@ app.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationPro
   $routeProvider.when '/dashboard', templateUrl: "<%= asset_path('dashboard.html') %>", auth: true
   $routeProvider.when '/meals/new', templateUrl: "<%= asset_path('meal.html') %>", controller: 'MealCtrl', auth: true
   $routeProvider.when '/meals/:mealId/edit', templateUrl: "<%= asset_path('meal.html') %>", controller: 'MealCtrl', auth: true
+  $routeProvider.when '/points/new', templateUrl: "<%= asset_path('point.html') %>", controller: 'PointCtrl', auth: true
+  $routeProvider.when '/points/:pointId/edit', templateUrl: "<%= asset_path('point.html') %>", controller: 'PointCtrl', auth: true
   $routeProvider.when '/settings', templateUrl: "<%= asset_path('settings.html') %>", controller: 'SettingsCtrl', auth: true
 ]
 

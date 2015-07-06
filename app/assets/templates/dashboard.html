@@ -77,3 +77,36 @@
     </div>
   </div>
 </div>
+
+
+<div class='page-header'>
+  <h1>Points</h1>
+</div>
+
+<div class="row" ng-controller="PointsCtrl">
+  <div class="col-sm-9">
+    <p><a href="points/new" class="btn btn-primary">Add Point</a></p>
+    <p ng-show="points.length == 0">No points to show.</p>
+    <table class="table table-striped table-points table-hover" ng-show="points.length > 0">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th class='col-price'>Price</th>
+          <th class='col-place'>Place</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="point in points">
+          <td>{{point.title}}</td>
+          <td class='col-price'>$ {{point.price}}</td>
+          <td class='col-place'>{{point.place}}</td>
+          <td class='text-right'>
+            <a href='#' class='btn btn-primary btn-xs' ng-href="/points/{{point.id}}/edit">Edit</a>
+            <a href='#' class='btn btn-danger btn-xs' ng-click="deletePoint(point)">Delete</a>
+          </td>
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>
