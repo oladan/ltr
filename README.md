@@ -1,5 +1,3 @@
-The demo application is deployed at http://calories-app.herokuapp.com
-
 # Stack
 
 * Ruby on Rails for REST API
@@ -8,7 +6,14 @@ The demo application is deployed at http://calories-app.herokuapp.com
 * Tests with rspec, capybara and selenium
 
 # Development setup
+  
+  Create DB user & add info to database.yml:
 
+    username: ltr
+    password: ltr
+
+  Then:
+  
     rake db:create
     rake db:migrate
     rails server
@@ -25,11 +30,11 @@ The demo application is deployed at http://calories-app.herokuapp.com
 
 # Deployment to Heroku
 
-## Setup
-
-    heroku create
-    heroku run rake db:migrate
-
 ## Deployment
 
+    heroku create
     git push heroku master
+
+## Setup
+
+    heroku run rake db:migrate
