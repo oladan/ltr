@@ -1,4 +1,4 @@
-angular.module('caloriesApp').controller 'SettingsCtrl', ['$scope', '$http', '$location', 'alerts', '$rootScope', ($scope, $http, $location, alerts, $rootScope) ->
+angular.module('ltrApp').controller 'SettingsCtrl', ['$scope', '$http', '$location', 'alerts', '$rootScope', ($scope, $http, $location, alerts, $rootScope) ->
   $scope.user = angular.copy($rootScope.currentUser)
 
   busy = false

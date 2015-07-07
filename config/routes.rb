@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     resources :meals, only: [:index, :create, :destroy, :show, :update]
+    resources :points, only: [:index, :create, :destroy, :show, :update]
     resources :calories_daily, only: [:index]
   end
 
@@ -14,6 +15,11 @@ Rails.application.routes.draw do
   get 'dashboard' => 'home#index'
   get 'meals/new' => 'home#index'
   get 'meals/:id/edit' => 'home#index'
+
+  get 'points' => 'home#index'
+  get 'points/new' => 'home#index'
+  get 'points/:id/edit' => 'home#index'
+
   get 'settings' => 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
