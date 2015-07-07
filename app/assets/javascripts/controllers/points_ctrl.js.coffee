@@ -2,10 +2,11 @@ angular.module('ltrApp').controller 'PointsCtrl', ['$scope', '$http', 'alerts', 
   $scope.points = []
   $scope.caloriesDaily = []
   $scope.pointFilter =
-    date_from: null
-    date_to: null
-    time_from: null
-    time_to: null
+    price_from: null
+    price_to: null
+    city_filt: null
+    country_filt: null
+    address_filt: null
 
   prepareFilter = ->
     $scope.pointFilter[key] = $scope.pointFilter[key] || null for key of $scope.pointFilter
@@ -17,28 +18,18 @@ angular.module('ltrApp').controller 'PointsCtrl', ['$scope', '$http', 'alerts', 
       .error ->
         alerts.addAlert('danger', 'Failed to load points.')
 
-  fetchCaloriesDaily = ->
-    $http.get('/api/calories_daily', params: $scope.pointFilter)
-      .success (data) ->
-        $scope.caloriesDaily = data
-      .error ->
-        alerts.addAlert('danger', 'Failed to calories daily.')        
-
   $scope.filterPoints = (filter) ->
-    return unless $scope.formFilter.$valid
+    return unless $scope.formPointsFilter.$valid
     prepareFilter()
     fetchPoints()
-    fetchCaloriesDaily()
 
   $scope.deletePoint = (point) ->
     return unless $window.confirm("Are you sure you want to delete this point?")
     $http.delete("/api/points/#{point.id}")
       .success ->
         $scope.points.splice $scope.points.indexOf(point), 1
-        fetchCaloriesDaily()
       .error ->
         alerts.addAlert('danger', 'Failed to delete the point.')
 
   fetchPoints()
-  fetchCaloriesDaily()
 ]

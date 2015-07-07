@@ -78,9 +78,8 @@
   </div>
 </div>
 
-
 <div class='page-header'>
-  <h1>Points</h1>
+  <h1>Properties for Long Term Rent</h1>
 </div>
 
 <div class="row" ng-controller="PointsCtrl">
@@ -92,15 +91,19 @@
         <tr>
           <th>Title</th>
           <th class='col-price'>Price</th>
-          <th class='col-place'>Place</th>
+          <th class='col-place'>Country</th>
+          <th class='col-place'>City</th>
+          <th class='col-place'>Address</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="point in points">
           <td>{{point.title}}</td>
-          <td class='col-price'>$ {{point.price}}</td>
-          <td class='col-place'>{{point.place}}</td>
+          <td class='col-price'>${{point.price}}</td>
+          <td class='col-place'>{{point.country}}</td>
+          <td class='col-place'>{{point.city}}</td>
+          <td class='col-place'>{{point.street}}</td>
           <td class='text-right'>
             <a href='#' class='btn btn-primary btn-xs' ng-href="/points/{{point.id}}/edit">Edit</a>
             <a href='#' class='btn btn-danger btn-xs' ng-click="deletePoint(point)">Delete</a>
@@ -108,5 +111,38 @@
         </div>
       </tbody>
     </table>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Filters</h3>
+      </div>
+      <div class="panel-body">
+        <form novalidate role="form" name="formPointsFilter" ng-submit="filterPoints(pointFilter)">
+          <div class="form-group" ng-class="{'has-error': formPointsFilter.priceFrom.$invalid}">
+            <label for="inputPriceFrom">Price from</label>
+            <input type="text" class="form-control" id="inputPriceFrom" name="priceFrom" placeholder="1000" ng-model="pointFilter.price_from" ng-pattern="/^\d+$/" />
+          </div>
+          <div class="form-group" ng-class="{'has-error': formPointsFilter.priceTo.$invalid}">
+            <label for="inputPriceTo">to</label>
+            <input type="text" class="form-control" id="inputPriceTo" name="priceTo" placeholder="1000000" ng-model="pointFilter.price_to" ng-pattern="/^\d+$/" />
+          </div>
+          <div class="form-group" ng-class="{'has-error': formPointsFilter.cityFilt.$invalid}">
+            <label for="inputCityFilt">City</label>
+            <input type="text" class="form-control" id="inputTimeFrom" name="cityFilt" placeholder="Kiev" ng-model="pointFilter.city_filt" ng-pattern="/^[a-zA-Z0-9 -]*$/" />
+          </div>
+          <div class="form-group" ng-class="{'has-error': formPointsFilter.countryFilt.$invalid}">
+            <label for="inputCountryFilt">Country</label>
+            <input type="text" class="form-control" id="inputCountryFilt" name="countryFilt" placeholder="Ukraine" ng-model="pointFilter.country_filt" ng-pattern="/^[a-zA-Z0-9 -]*$/" />
+          </div>
+          <div class="form-group" ng-class="{'has-error': formPointsFilter.addressFilt.$invalid}">
+            <label for="inputAddressFilt">Street / Address</label>
+            <input type="text" class="form-control" id="inputAddressFilt" name="addressFilt" placeholder="Shevchenko" ng-model="pointFilter.address_filt" ng-pattern="/^[a-zA-Z0-9 -.]*$/" />
+          </div>
+          <button type="submit" class="btn btn-primary" ng-disabled="formPointsFilter.$pristine || formPointsFilter.$invalid">Filter</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

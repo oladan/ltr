@@ -4,7 +4,14 @@ module Api
 
     # GET /api/points
     def index
-      @points = PointsQuery.new(current_user).query_with_order
+      @points = PointsQuery.new(
+        current_user, 
+        params[:address_filt], 
+        params[:city_filt], 
+        params[:country_filt], 
+        params[:price_from], 
+        params[:price_to]
+      ).query_with_order
     end
 
     # POST /api/points
