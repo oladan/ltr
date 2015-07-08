@@ -23,6 +23,7 @@ angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '
       title: point.title
       price: point.price
       place: point.place
+      avatar: point.avatar
   
     saveMethod = if point.id then $http.patch else $http.post
     saveMethod((if point.id then "/api/points/#{point.id}" else "/api/points/"), pointAttr)

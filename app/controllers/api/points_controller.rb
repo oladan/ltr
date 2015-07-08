@@ -42,7 +42,7 @@ module Api
     private
 
       def point_params
-        params.require(:point).permit(:title, :price, :place)
+        params.require(:point).permit(:title, :price, :place, :avatar)
       end
 
       def load_point

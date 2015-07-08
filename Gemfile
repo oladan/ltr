@@ -58,3 +58,5 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
 
 gem 'geocoder'
+gem 'paperclip'
+gem 'aws-sdk'
