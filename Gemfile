@@ -58,5 +58,6 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
 
 gem 'geocoder'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'

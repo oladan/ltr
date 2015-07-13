@@ -20,13 +20,28 @@ class Point < ActiveRecord::Base
   end
 
   # This method associates the attribute ":avatar" with a file attachment
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
+  has_attached_file :avatar, 
+  styles: {
+    thumb:  '100x100>',
     square: '200x200#',
     medium: '300x300>'
+  }, 
+  storage: :s3, 
+  s3_host_name: 's3-eu-central-1.amazonaws.com', 
+  bucket: ENV['S3_BUCKET_NAME'],
+  s3_credentials: {
+    access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
   }
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  def avatar_url
+    if avatar.exists?
+      avatar_url = avatar.url(:square)
+    else
+      avatar_url = 'tmp.jpg'
+    end
+  end
 end
