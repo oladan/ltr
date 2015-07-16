@@ -1,6 +1,5 @@
 angular.module('ltrApp').controller 'PointsCtrl', ['$scope', '$http', 'alerts', '$window', ($scope, $http, alerts, $window) ->
   $scope.points = []
-  $scope.caloriesDaily = []
   $scope.pointFilter =
     price_from: null
     price_to: null

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     resources :meals, only: [:index, :create, :destroy, :show, :update]
-    resources :points, only: [:index, :create, :destroy, :show, :update]
+    resources :points, only: [:index, :create, :destroy, :show, :update] do
+      member do
+        post 'delete_picture'
+      end
+    end
     resources :calories_daily, only: [:index]
   end
 

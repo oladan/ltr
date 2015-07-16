@@ -1,6 +1,6 @@
 angular.module('ltrApp')
   .service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, data, uploadUrl, saveMethod, response){
+    this.uploadFileToUrl = function(file, pictures, data, uploadUrl, saveMethod, response){
       var fd = new FormData();
 
       // Append additional parametters
@@ -9,8 +9,13 @@ angular.module('ltrApp')
         fd.append(name, data[k])
       }
 
-      // Append the file
+      // Append the avatar
       fd.append('point[avatar]', file);
+
+      // Append the pictures
+      $.each(pictures,function(j,file){
+        fd.append('point[pictures]['+j+']', file);//i had to change "i" by "j"
+      });
 
       saveMethod(uploadUrl, fd, {
         transformRequest: angular.identity,

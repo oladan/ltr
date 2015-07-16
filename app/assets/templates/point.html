@@ -15,19 +15,6 @@
       <input type="text" class="form-control" id="inputPrice" ng-model="point.price" name="price" ng-maxlength="255" />
     </div>
   </div>
-  <div class="form-group" ng-class="{'has-error': formPoint.avatar.$invalid}">
-    <label for="inputAvatar" class="col-sm-2 control-label">Avatar</label>
-    <div class="col-sm-10">
-      <span class="btn btn-default btn-file">
-        <input type="file" ng-model="point.avatar" id="inputAvatar" name="avatar">
-      </span>
-    </div>
-  </div>
-    <div ng-hide="!point.avatar_url" class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <img src="{{point.avatar_url}}" %>
-      </div>
-    </div>
   <div class="form-group" ng-class="{'has-error': formPoint.place.$invalid}">
     <label for="inputPlace" class="col-sm-2 control-label">Place</label>
     <div class="col-sm-10">
@@ -39,9 +26,35 @@
       <img src="http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers={{point.latitude}}%2C{{point.longitude}}" %>
     </div>
   </div>
+  <div class="form-group" ng-class="{'has-error': formPoint.avatar.$invalid}">
+    <label for="inputAvatar" class="col-sm-2 control-label">Main photo</label>
+    <div class="col-sm-10">
+      <span class="btn btn-default btn-file">
+        <input type="file" ng-model="point.avatar" id="inputAvatar" name="avatar">
+      </span>
+    </div>
+  </div>
+  <div ng-hide="!point.avatar_url" class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <img src="{{point.avatar_url}}">
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-error': formPoint.picture.$invalid}">
+    <label for="inputAvatar" class="col-sm-2 control-label">Photos</label>
+    <div class="col-sm-10">
+      <span class="btn btn-default btn-file">
+        <input type="file" multiple ng-model="point.picture" id="inputPicture" name="pictures[]">
+      </span>
+    </div>
+  </div>
+  <div ng-hide="!point.pics" class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <img ng-repeat="(pic_id, pic) in point.pics" ng-click="deletePointPhoto(point.id, pic_id)" id="pic_{{pic_id}}" ng-src="{{pic}}">
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary" ng-disabled="formPoint.$pristine || formPoint.$invalid">Save Point</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="formPoint.$invalid">Save Point</button>
       <a href="/dashboard" class="btn btn-default">Cancel</a>
     </div>
   </div>

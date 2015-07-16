@@ -1,5 +1,6 @@
 class Point < ActiveRecord::Base
   belongs_to :user
+  has_many :pictures, :dependent => :destroy
 
   validates :title, presence: true
   validates :price, presence: true
@@ -20,14 +21,14 @@ class Point < ActiveRecord::Base
   end
 
   # This method associates the attribute ":avatar" with a file attachment
-  has_attached_file :avatar, 
+  has_attached_file :avatar,
   styles: {
     thumb:  '100x100>',
     square: '200x200#',
     medium: '300x300>'
-  }, 
-  storage: :s3, 
-  s3_host_name: 's3-eu-central-1.amazonaws.com', 
+  },
+  storage: :s3,
+  s3_host_name: ENV['S3_HOST'],
   bucket: ENV['S3_BUCKET_NAME'],
   s3_credentials: {
     access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
@@ -43,5 +44,13 @@ class Point < ActiveRecord::Base
     else
       avatar_url = 'tmp.jpg'
     end
+  end
+
+  def pics
+    @result = {}
+    pictures.each do |value|
+      @result[value.id] = value.pic.url(:square)
+    end
+    @result
   end
 end

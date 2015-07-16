@@ -1,6 +1,6 @@
 module Api
   class PointsController < BaseController
-    before_filter :load_point, only: [:destroy, :show, :update]
+    before_filter :load_point, only: [:destroy, :show, :update, :delete_picture]
 
     # GET /api/points
     def index
@@ -18,6 +18,11 @@ module Api
     def create
       @point = current_user.points.build(point_params)
       if @point.save
+        if params[:point][:pictures]
+          params[:point][:pictures].each { |key, picture|
+            @point.pictures.create(pic: picture)
+          }
+        end
         render status: :created
       else
         render json: {errors: @point.errors.full_messages}, status: :unprocessable_entity
@@ -37,12 +42,24 @@ module Api
     # PATCH /api/points/:id
     def update
       @point.update! point_params
+      if params[:point][:pictures]
+        params[:point][:pictures].each { |key, picture|
+          @point.pictures.create(pic: picture)
+        }
+      end
+    end
+
+    def delete_picture
+      if params[:point_photo_id] && params[:id]
+        x = @point.pictures.find params[:point_photo_id]
+        x.delete
+      end
     end
 
     private
 
       def point_params
-        params.require(:point).permit(:title, :price, :place, :avatar)
+        params.require(:point).permit(:title, :price, :place, :avatar, :pictures, :point_photo_id)
       end
 
       def load_point
