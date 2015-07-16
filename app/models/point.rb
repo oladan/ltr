@@ -28,7 +28,7 @@ class Point < ActiveRecord::Base
     medium: '300x300>'
   },
   storage: :s3,
-  s3_host_name: 's3-eu-central-1.amazonaws.com',
+  s3_host_name: ENV['S3_HOST'],
   bucket: ENV['S3_BUCKET_NAME'],
   s3_credentials: {
     access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
