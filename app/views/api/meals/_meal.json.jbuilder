@@ -1,1 +1,0 @@
-json.(meal, :id, :eaten_at, :calories, :description)

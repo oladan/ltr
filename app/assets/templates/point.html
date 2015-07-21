@@ -3,6 +3,12 @@
 </div>
 
 <form class="form-horizontal" role="form" ng-submit="savePoint(point)" name="formPoint" enctype="multipart/form-data" novalidate>
+  <div class="form-group" ng-class="{'has-error': formPoint.type.$invalid}">
+    <label for="inputType" class="col-sm-2 control-label">Type</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="inputType" ng-model="point.type" name="type" />
+    </div>
+  </div>
   <div class="form-group" ng-class="{'has-error': formPoint.title.$invalid}">
     <label for="inputTitle" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
@@ -13,6 +19,12 @@
     <label for="inputPrice" class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="inputPrice" ng-model="point.price" name="price" ng-maxlength="255" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhone" class="col-sm-2 control-label">Phone number</label>
+    <div class="col-sm-10">
+      <input class="form-control" ui-mask="999999999999" id="inputPhone" maxlength="12" name="phone" placeholder="xxxxxxxxxxxx" ng-model="point.phone">
     </div>
   </div>
   <div class="form-group" ng-class="{'has-error': formPoint.place.$invalid}">
@@ -49,7 +61,7 @@
   </div>
   <div ng-hide="!point.pics" class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-     <img ng-repeat="(pic_id, pic) in point.pics" ng-click="deletePointPhoto(point.id, pic_id)" id="pic_{{pic_id}}" ng-src="{{pic}}">
+     <img ng-repeat="(pic_id, pic) in point.pics" class="img-responsive img-thumbnail" onmouseover="xvar = this.src; this.src='trash1280.png';" onmouseout="this.src = xvar" style="margin-top: 10px;" ng-click="deletePointPhoto(point.id, pic_id)" id="pic_{{pic_id}}" ng-src="{{pic}}">
     </div>
   </div>
   <div class="form-group">

@@ -8,8 +8,6 @@ angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '
       .error ->
         alerts.addAlert('danger', "Failed to load the point.")
 
-
-
   $scope.savePoint = (point) ->
     return if $scope.formPoint.$invalid
     pointAttr = 
@@ -25,13 +23,14 @@ angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '
     return unless confirm("Are you sure you want to delete this photo?")
     $http.post('/api/points/' + point_id + '/delete_picture', point_photo_id: point_photo_id)
       .success ->
+        alerts.addAlert('success', 'Selected photo succesfully removed.')
         $scope.point = {id: point_id}
         $http.get("/api/points/" + $routeParams.pointId)
           .success (data) ->
             $scope.point = data
           .error ->
             alerts.addAlert('danger', "Failed to load the point.")
-            
+
       .error ->
         alerts.addAlert('danger', 'Failed to remove selected photo.')
 

@@ -1,0 +1,31 @@
+angular.module('ltrApp').service 'fileUpload', [
+  '$http'
+  ($http) ->
+
+    @uploadFileToUrl = (file, pictures, data, uploadUrl, saveMethod, response) ->
+      fd = new FormData
+      # Append additional parametters
+      for k of data
+        name = 'point[' + k + ']'
+        fd.append name, data[k]
+      # Append the avatar
+      if file
+        fd.append 'point[avatar]', file
+      # Append the pictures
+      if pictures
+        $.each pictures, (j, file) ->
+          fd.append 'point[pictures][' + j + ']', file
+          #i had to change "i" by "j"
+          return
+      saveMethod(uploadUrl, fd,
+        transformRequest: angular.identity
+        headers: 'Content-Type': undefined).success((response) ->
+        top.location.href = '/dashboard'
+        return
+      ).error (response) ->
+        # callback(response);
+        return
+      return
+
+    return
+]

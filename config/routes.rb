@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     resources :meals, only: [:index, :create, :destroy, :show, :update]
     resources :points, only: [:index, :create, :destroy, :show, :update] do
+      # get 'points_types '
       member do
         post 'delete_picture'
       end
     end
-    resources :calories_daily, only: [:index]
   end
 
   get 'sign_up' => 'home#index'
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'points' => 'home#index'
   get 'points/new' => 'home#index'
   get 'points/:id/edit' => 'home#index'
+  get 'points/points_types' => 'home#index'
 
   get 'settings' => 'home#index'
 

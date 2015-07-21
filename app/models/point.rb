@@ -1,5 +1,6 @@
 class Point < ActiveRecord::Base
   belongs_to :user
+  belongs_to :type
   has_many :pictures, :dependent => :destroy
 
   validates :title, presence: true
@@ -24,7 +25,7 @@ class Point < ActiveRecord::Base
   has_attached_file :avatar,
   styles: {
     thumb:  '100x100>',
-    square: '200x200#',
+    square: '170x170#',
     medium: '300x300>'
   },
   storage: :s3,
@@ -49,7 +50,7 @@ class Point < ActiveRecord::Base
   def pics
     @result = {}
     pictures.each do |value|
-      @result[value.id] = value.pic.url(:square)
+      @result[value.id] = value.pic.url(:large)
     end
     @result
   end
