@@ -57,8 +57,8 @@ module Api
     end
 
     def points_types
-      x = Type.all
-      render json: x
+      type = Type.all
+      render json: type
     end
 
     private

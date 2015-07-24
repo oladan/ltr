@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, module: 'api', path: 'api/users', defaults: {format: 'json'}
 
   namespace :api, defaults: {format: 'json'} do
-    resources :meals, only: [:index, :create, :destroy, :show, :update]
     resources :points, only: [:index, :create, :destroy, :show, :update] do
-      # get 'points_types '
       member do
         post 'delete_picture'
       end
@@ -23,7 +21,8 @@ Rails.application.routes.draw do
   get 'points' => 'home#index'
   get 'points/new' => 'home#index'
   get 'points/:id/edit' => 'home#index'
-  get 'points/points_types' => 'home#index'
+  
+  get 'points/points_types' => 'api/points#points_types'
 
   get 'settings' => 'home#index'
 
