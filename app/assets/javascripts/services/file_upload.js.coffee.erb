@@ -15,7 +15,6 @@ angular.module('ltrApp').service 'fileUpload', [
       if pictures
         $.each pictures, (j, file) ->
           fd.append 'point[pictures][' + j + ']', file
-          #i had to change "i" by "j"
           return
       saveMethod(uploadUrl, fd,
         transformRequest: angular.identity

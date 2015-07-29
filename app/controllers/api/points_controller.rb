@@ -57,14 +57,14 @@ module Api
     end
 
     def points_types
-      type = Type.all
-      render json: type
+      @types = Type.all.select(:id, :title)
+      render json: @types
     end
 
     private
 
       def point_params
-        params.require(:point).permit(:title, :price, :place, :avatar, :pictures, :point_photo_id, :phone, :type)
+        params.require(:point).permit(:title, :price, :place, :avatar, :pictures, :point_photo_id, :phone, :type_id)
       end
 
       def load_point

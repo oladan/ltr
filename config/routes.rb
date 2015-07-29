@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   devise_for :users, module: 'api', path: 'api/users', defaults: {format: 'json'}
 
   namespace :api, defaults: {format: 'json'} do
-    resources :points, only: [:index, :create, :destroy, :show, :update] do
+    resources :points do
       member do
         post 'delete_picture'
       end
+      get 'points_types'
     end
   end
 

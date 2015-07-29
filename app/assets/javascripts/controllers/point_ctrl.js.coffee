@@ -1,4 +1,9 @@
 angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '$filter', '$location', '$routeParams', 'fileUpload', ($scope, $http, alerts, $filter, $location, $routeParams, fileUpload) ->
+
+  $http.get("/points/points_types.json")
+    .success (data) ->
+      $scope.types_selects = data
+
   if $routeParams.pointId
     $scope.point = {id: $routeParams.pointId}
 
@@ -11,9 +16,10 @@ angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '
   $scope.savePoint = (point) ->
     return if $scope.formPoint.$invalid
     pointAttr = 
-      title: point.title
       price: point.price
       place: point.place
+      phone: point.phone
+      type_id: point.type_id
   
     saveMethod = if point.id then $http.patch else $http.post
     if point.id then uploadUrl = "/api/points/#{point.id}" else uploadUrl = "/api/points/"

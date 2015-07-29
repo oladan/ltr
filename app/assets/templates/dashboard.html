@@ -19,7 +19,6 @@
       </thead>
       <tbody>
         <tr ng-repeat="point in points">
-          <td>{{point.title}}</td>
           <td class='col-price'>${{point.price}}</td>
           <td class='col-place'>{{point.country}}</td>
           <td class='col-place'>{{point.city}}</td>
@@ -50,7 +49,7 @@
           </div>
           <div class="form-group" ng-class="{'has-error': formPointsFilter.cityFilt.$invalid}">
             <label for="inputCityFilt">City</label>
-            <input type="text" class="form-control" id="inputTimeFrom" name="cityFilt" placeholder="Kiev" ng-model="pointFilter.city_filt" ng-pattern="/^[a-zA-Z0-9 -]*$/" />
+            <input type="text" class="form-control" id="inputCityFilt" name="cityFilt" placeholder="Kiev" ng-model="pointFilter.city_filt" ng-pattern="/^[a-zA-Z0-9 -]*$/" />
           </div>
           <div class="form-group" ng-class="{'has-error': formPointsFilter.countryFilt.$invalid}">
             <label for="inputCountryFilt">Country</label>
