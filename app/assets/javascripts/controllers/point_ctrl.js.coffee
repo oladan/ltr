@@ -14,6 +14,7 @@ angular.module('ltrApp').controller 'PointCtrl', ['$scope', '$http', 'alerts', '
         alerts.addAlert('danger', "Failed to load the point.")
 
   $scope.savePoint = (point) ->
+    $('#myModal').show()
     return if $scope.formPoint.$invalid
     pointAttr = 
       price: point.price

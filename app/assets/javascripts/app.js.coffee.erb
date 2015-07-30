@@ -4,7 +4,7 @@
 #= depend_on_asset 'dashboard.html'
 #= depend_on_asset 'point.html'
 
-app = angular.module 'ltrApp', ['ngRoute', 'ui.bootstrap', 'ui.mask']
+app = angular.module 'ltrApp', ['ngRoute', 'ui.bootstrap', 'ui.mask', 'internationalPhoneNumber']
 
 app.factory 'alerts', ['$rootScope', ($rootScope) ->
   $rootScope.alerts = []

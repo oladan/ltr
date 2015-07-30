@@ -14,6 +14,24 @@
 </head>
 <body ng-controller="ApplicationCtrl">
 
+<div id="myModal" class="overlay" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content" style="text-align: center; padding: 40px">
+            <h4>
+              <img src="loading.gif" style="padding-right: 20px">
+              Please wait...
+            </h3>
+        </div>
+    </div>
+</div>
+
+<div class="fast_scroll">
+  <div class="fast_links">
+    <a href="javascript: $('html, body').animate({ scrollTop: 0 }, 'fast');">↑</a>
+    <a href="javascript: $target = $('html,body'); $target.animate({scrollTop: $target.height()}, 1000);">↓</a>
+  </div>
+</div>
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
       <div class="navbar-header">

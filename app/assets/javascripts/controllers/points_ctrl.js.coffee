@@ -11,9 +11,11 @@ angular.module('ltrApp').controller 'PointsCtrl', ['$scope', '$http', 'alerts', 
     $scope.pointFilter[key] = $scope.pointFilter[key] || null for key of $scope.pointFilter
 
   fetchPoints = ->
+    $('#myModal').show()
     $http.get('/api/points', params: $scope.pointFilter)
       .success (data) ->
         $scope.points = data
+        $('#myModal').hide()
       .error ->
         alerts.addAlert('danger', 'Failed to load points.')
 
